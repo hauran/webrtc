@@ -11,3 +11,13 @@ Problem is with getting color of the pixelated section.  Sampling a coordinate t
 <b>Libraries</b>
 processing.js
 headtrackr.js
+
+
+Use
+======
+<code>
+	npm install
+	nodemon server.js
+</code>
+
+go to localhost:3000
