@@ -1,0 +1,83 @@
+<html>
+<head>
+  <script src="js/lib/headtrackr.js"></script>
+  <script src="js/lib/processing.js"></script>
+  <script src="js/lib/ProcessingJSTargetCanvasId.js"></script>
+</head>
+<body>
+
+<canvas id="output" width="500px" height="500px" align="center"></canvas>
+<canvas id="output_not_used" width="500px" height="500px" align="center" style='display:none'></canvas>
+<video id="videoOutput" style="display:none;" width="500px" height="500px" autoplay></video>
+
+<script>
+  var videoOutput = document.getElementById('videoOutput');
+  var canvas = document.getElementById('output');
+  var canvas_not_used = document.getElementById('output_not_used');
+
+  var htracker = new headtrackr.Tracker();
+  htracker.init(videoOutput, canvas_not_used);
+  htracker.start();
+
+  var face = {};
+
+  document.addEventListener('facetrackingEvent', 
+    function (event) {
+      face.x = event.x;
+      face.y = event.y; 
+      face.w = event.width;
+      face.h = event.height;
+      // console.log(face);
+    }
+  );
+</script>
+
+<script type="application/processing" target="output">
+  var video = document.getElementById("videoOutput");
+  var ctx;
+  PImage img;
+  int i,j;
+  int nb=50;
+
+  int swidth = 500;
+  int px = swidth/nb;
+  int segments = swidth/px;
+
+  void setup(){
+    size(swidth,swidth);
+    ctx = externals.context;
+    ellipseMode(CORNER);
+    smooth();
+  }
+
+  void draw(){
+    pushMatrix();
+    translate(width,0);
+    scale(-1,1);//mirror the video
+    ctx.drawImage(video, 0, 0, width, height); //video is defined inside getUserMedia.js
+    popMatrix();
+
+    img=get();
+    img.resize(nb,nb);
+    noStroke();
+
+    // j is down
+    // i is across
+    var startX = ((swidth - face.x) -  face.w/2) * nb/swidth;
+    var startY = (face.y - face.h/2) * nb/swidth;;
+
+    var endX = (face.w*nb/swidth)  + startX;
+    var endY = (face.h*nb/swidth) + startY;
+
+    for(j=startY; j<endY; j++){
+      for(i=startX; i<endX; i++){
+        // console.log(i,j)
+        fill(img.get(i,j));
+        ellipse(i*width/nb, j*height/nb, width/nb, height/nb);
+      }
+    }
+
+  }
+</script>
+</body>
+</html>

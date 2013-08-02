@@ -1,0 +1,31 @@
+{
+  "name": "webrtc",
+  "version": "0.0.0",
+  "private": true,
+  "description": "things to do off subway stops",
+  "main": "server.js",
+  "dependencies": {
+    "hogan.js": "*",
+    "underscore": "1.4.x",
+    "express": "3.x",
+    "ejs": "0.8.3",
+    "less":"1.3.3",
+    "inspect":"0.0.2",
+    "grunt-cli": "~0.1.6",
+    "grunt": "~0.4.0",
+    "grunt-hash": "~0.2.1",
+    "grunt-contrib-jshint": "~0.2.0",
+    "grunt-contrib-stylus": "~0.4.0",
+    "grunt-contrib-concat": "~0.1.2",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-uglify": "~0.1.1",
+    "grunt-contrib-less": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1"
+  },
+  "devDependencies": {
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
