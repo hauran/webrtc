@@ -36,21 +36,10 @@ app.get('/', function(req, res) {
   res.render('index.html', {});
 });
 
-
-
 var server = http.createServer(app).listen(app.get('port'), '0.0.0.0', function() {
-  console.log('offline server listening on port ' + app.get('port'));
+  console.log('webrtc server listening on port ' + app.get('port'));
 });
 
 server.on('close', function() {
-  console.log('offline server closed on port ' + app.get('port'));
-});
-
-['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGABRT', 'SIGTERM'].forEach(function(s) {
-  process.on(s, function() {
-    server.close(); 
-    setTimeout(function() {
-      process.exit(0);
-    }, 2000);
-  });
+  console.log('webrtc server closed on port ' + app.get('port'));
 });
