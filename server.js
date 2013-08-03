@@ -20,17 +20,6 @@ app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.enable('trust proxy');
 
-var controllerFiles = fs.readdirSync('controllers');
-controllerFiles.forEach(function (controllerFile) {
-  if (controllerFile.indexOf('.js') === -1) {
-    return;
-  } else {
-    controllerFile = controllerFile.replace('.js', '');
-    var controller = require('./controllers/' + controllerFile);
-    controller.setup(app);
-  }
-});
-
 
 app.get('/', function(req, res) {
   res.render('index.html', {});
