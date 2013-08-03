@@ -12,8 +12,8 @@ headtrackr.js
 Set Up
 ======
 <code>
-	npm install
-	nodemon server.js
+	npm install<br/>
+	node server.js
 </code>
 
 then<br/>

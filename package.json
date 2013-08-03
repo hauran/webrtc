@@ -2,7 +2,7 @@
   "name": "webrtc",
   "version": "0.0.0",
   "private": true,
-  "description": "things to do off subway stops",
+  "description": "face off",
   "main": "server.js",
   "dependencies": {
     "express": "3.x",
